@@ -20,7 +20,7 @@ jobs:
       target-env: 'DEV'
     secrets: inherit
 
-  deploy_prod:
+  deploy_uat_and_prod:
     name: "Deploy to ${{ matrix.target }} Instance"
     if: github.ref == 'refs/heads/main'
     strategy:
