@@ -19,3 +19,14 @@ jobs:
     with:
       target-env: 'DEV'
     secrets: inherit
+
+  deploy_dev_test:
+      name: "Deploy to Dev Instance Test Should Not Run"
+      if: false
+      strategy:
+        fail-fast: true
+        max-parallel: 1
+      uses: ./.github/workflows/reusable-ci.yml
+      with:
+        target-env: 'DEV'
+      secrets: inherit
