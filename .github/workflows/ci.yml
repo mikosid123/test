@@ -11,7 +11,7 @@ on:
 jobs:
   deploy_dev:
     name: "Deploy to Dev Instance"
-    if: ${{ github.ref }} == 'refs/head/develop'
+    if: github.ref == 'refs/heads/develop'
     strategy:
       fail-fast: true
       max-parallel: 1
@@ -20,13 +20,13 @@ jobs:
       target-env: 'DEV'
     secrets: inherit
 
-  deploy_dev_test:
-      name: "Deploy to Dev Instance Test Should Not Run"
-      if: false
-      strategy:
-        fail-fast: true
-        max-parallel: 1
-      uses: ./.github/workflows/reusable-ci.yml
-      with:
-        target-env: 'DEV'
-      secrets: inherit
+  deploy_prod:
+    name: "Deploy to Prod Instance"
+    if: github.ref == 'refs/heads/main'
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+    uses: ./.github/workflows/reusable-ci.yml
+    with:
+      target-env: 'DEV'
+    secrets: inherit
