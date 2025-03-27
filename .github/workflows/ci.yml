@@ -11,7 +11,7 @@ on:
 jobs:
   deploy_dev:
     name: "Deploy to Dev Instance"
-    if: ${{ github.ref }} == 'refs/head/develop'
+    if: github.ref == 'refs/head/develop'
     strategy:
       fail-fast: true
       max-parallel: 1
