@@ -21,12 +21,14 @@ jobs:
     secrets: inherit
 
   deploy_prod:
-    name: "Deploy to Prod Instance"
+    name: "Deploy to ${{ matrix.target }} Instance"
     if: github.ref == 'refs/heads/main'
     strategy:
       fail-fast: true
       max-parallel: 1
+      matrix:
+        target: [UAT, PROD]
     uses: ./.github/workflows/reusable-ci.yml
     with:
-      target-env: 'DEV'
+      target-env: ${{ matrix.target }}
     secrets: inherit
